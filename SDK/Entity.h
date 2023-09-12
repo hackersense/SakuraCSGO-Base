@@ -52,7 +52,7 @@ private:
 class LocalPlayer : Entity
 {
 public:
-	LocalPlayer(uintptr_t clientAddress) : clientAddress{ clientAddress }, Entity(csgo->read<uintptr_t>(clientAddress + Offsets::LocalPlayer)) {};
+	LocalPlayer(uintptr_t clientAddress) : clientAddress{ clientAddress }, Entity(csgo->read<uintptr_t>(clientAddress + Offsets::dwLocalPlayer)) {};
 
 	void jump()
 	{
