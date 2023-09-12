@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Memory.h" />
     <ClInclude Include="ProcessUtil.h" />
+    <ClInclude Include="SDK\Entity.h" />
     <ClInclude Include="SDK\Offsets.h" />
     <ClInclude Include="SDK\Vector.h" />
   </ItemGroup>

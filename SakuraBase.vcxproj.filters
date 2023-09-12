@@ -35,5 +35,8 @@
     <ClInclude Include="SDK\Offsets.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\Entity.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

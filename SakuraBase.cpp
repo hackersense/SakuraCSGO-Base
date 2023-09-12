@@ -1,8 +1,7 @@
 ﻿#include <iostream>
 
 #include "ProcessUtil.h"
-
-static MemoryRW* csgo;
+#include "SDK/Entity.h"
 
 using namespace std;
 
@@ -22,11 +21,11 @@ int main()
     {
         while (true)
         {
-            const auto localPlayer = csgo->read<uintptr_t>(clientAddress + Offsets::LocalPlayer);
-            if (localPlayer)
+            LocalPlayer* localPlayer = new LocalPlayer(clientAddress);
+            if (localPlayer->toEntity()->isValid() && localPlayer->toEntity()->isAlive())
             {
-                const auto health = csgo->read<uintptr_t>(localPlayer + Offsets::m_iHealth);
-                cout << health << endl;
+                if (GetAsyncKeyState(VK_SPACE) && localPlayer->toEntity()->isOnGround())
+                    localPlayer->jump();
             }
         }
     }

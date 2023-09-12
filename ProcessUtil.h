@@ -5,9 +5,12 @@
 #include <string>
 #include "Memory.h"
 
+static MemoryRW* csgo;
+static uintptr_t* clientAddress;
+
 namespace ProcessUtil {
-	std::uintptr_t getModuleBaseAddress(DWORD processID, const wchar_t* moduleName) {
-		std::uintptr_t address = 0;
+	uintptr_t getModuleBaseAddress(DWORD processID, const wchar_t* moduleName) {
+		uintptr_t address = 0;
 		HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processID);
 		if (hSnap != INVALID_HANDLE_VALUE) {
 			MODULEENTRY32 modEntry;
@@ -18,7 +21,7 @@ namespace ProcessUtil {
 				{
 					if (!_wcsicmp(modEntry.szModule, moduleName))
 					{
-						address = (std::uintptr_t)modEntry.modBaseAddr;
+						address = (uintptr_t)modEntry.modBaseAddr;
 						break;
 					}
 				} while (Module32Next(hSnap, &modEntry));
